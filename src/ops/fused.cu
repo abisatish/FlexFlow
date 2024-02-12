@@ -610,15 +610,9 @@ __host__ void
                       bc->num_active_tokens(),
                       bc->num_generation_tokens > 0};
   int scenario = 0;
-  cudaEvent_t t_start_update, t_end_update;
   int shard_id = task->index_point.point_data[0];
   if(metas->graph_collections.count(graph_params) != 0) {
     instance = metas->graph_collections[graph_params];
-
-    // cudaEventCreate(&t_start_update);
-    // cudaEventCreate(&t_end_update);
-    // cudaEventRecord(t_start_update, stream);
-
      bool update_failed = false;
 #if defined(CUDA_VERSION) && (CUDA_VERSION < 12000)
     cudaGraphExecUpdateResult updateResult;
